@@ -1,8 +1,8 @@
-export type Tank={x:number;y:number;dir:number;hp:number};
+export type Tank={x:number;y:number;dir:number;hp:number;pose?:'idle'|'fire'|'hit';poseUntil?:number};
 export type Shot={x:number;y:number;vx:number;vy:number;owner:0|1};
 export type Wall=readonly [number,number,number,number];
 export const arenas:readonly Wall[][]=[[[45,35,10,30]],[[25,20,8,45],[67,35,8,45]],[[42,10,16,15],[42,75,16,15]]];
-export const spawnTanks=():Tank[]=>[{x:8,y:50,dir:0,hp:3},{x:87,y:50,dir:Math.PI,hp:3}];
+export const spawnTanks=():Tank[]=>[{x:8,y:50,dir:0,hp:3,pose:'idle',poseUntil:0},{x:87,y:50,dir:Math.PI,hp:3,pose:'idle',poseUntil:0}];
 export const circleHitsWall=(x:number,y:number,r:number,walls:readonly Wall[])=>walls.some(([wx,wy,ww,wh])=>x+r>wx&&x-r<wx+ww&&y+r>wy&&y-r<wy+wh);
 export function moveTank(tank:Tank,turn:number,move:number,dt:number,walls:readonly Wall[]){
   tank.dir+=turn*2.8*dt;const steps=Math.max(1,Math.ceil(dt/.03)),step=dt/steps;
@@ -10,7 +10,7 @@ export function moveTank(tank:Tank,turn:number,move:number,dt:number,walls:reado
 }
 export function advanceShots(shots:Shot[],tanks:Tank[],walls:readonly Wall[],dt:number){
   const hits:number[]=[];
-  const remaining=shots.filter(shot=>{shot.x+=shot.vx*dt;shot.y+=shot.vy*dt;if(shot.x<=0||shot.x>=100||shot.y<=0||shot.y>=100||circleHitsWall(shot.x,shot.y,1,walls))return false;const target=tanks.findIndex((tank,i)=>i!==shot.owner&&Math.hypot(tank.x-shot.x,tank.y-shot.y)<=5);if(target<0)return true;tanks[target].hp=Math.max(0,tanks[target].hp-1);hits.push(target);return false});
+  const remaining=shots.filter(shot=>{shot.x+=shot.vx*dt;shot.y+=shot.vy*dt;if(shot.x<=0||shot.x>=100||shot.y<=0||shot.y>=100||circleHitsWall(shot.x,shot.y,1,walls))return false;const target=tanks.findIndex((tank,i)=>i!==shot.owner&&Math.hypot(tank.x-shot.x,tank.y-shot.y)<=5);if(target<0)return true;tanks[target].hp=Math.max(0,tanks[target].hp-1);tanks[target].pose='hit';hits.push(target);return false});
   return{shots:remaining,hits};
 }
 export function resolveRound(wins:readonly number[],winner:0|1){const next=[...wins];next[winner]++;return{wins:next,matchWinner:next[winner]>=2?winner:null}}
