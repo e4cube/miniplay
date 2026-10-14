@@ -9,4 +9,8 @@
 | ESLint | OpenJS Foundation | https://github.com/eslint/eslint | MIT | No |
 | Playwright | Microsoft Corporation | https://github.com/microsoft/playwright | Apache-2.0 | No |
 
-All five game implementations are original to this project. No third-party game code, images, music, sounds, sprites, fonts, or remote media are included. Cards use Unicode and CSS; memory cards use operating-system emoji.
+Game implementations use original maps and media. Battle Tanks selectively reuses the MIT-licensed Vector utility from cattle-bity, as documented below. No third-party game images, music, sounds, sprites, fonts or remote media are included. Cards use Unicode and CSS; memory cards use operating-system emoji.
+
+## Battle Tanks — cattle-bity
+
+`src/games/battle-tanks/vendor/cattle-bity/Vector.ts` is copied unmodified except for its attribution header from [dogballs/cattle-bity](https://github.com/dogballs/cattle-bity/blob/803f80207be9ed62149e2334636e6d0ff30ad777/src/core/Vector.ts), commit `803f80207be9ed62149e2334636e6d0ff30ad777`. Copyright (c) 2020 Michael Radionov, MIT. Full notice retained in the adjacent `LICENSE`. Used for cardinal movement velocity math. No original stages, graphics or audio are imported.

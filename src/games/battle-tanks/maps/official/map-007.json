@@ -1,0 +1,241 @@
+{
+  "id": "map-007",
+  "name": "Ice Field",
+  "width": 13,
+  "height": 13,
+  "tiles": [
+    [
+      "ICE",
+      "ENEMY_SPAWN",
+      "ICE",
+      "ICE",
+      "ICE",
+      "ICE",
+      "ENEMY_SPAWN",
+      "ICE",
+      "ICE",
+      "ICE",
+      "ICE",
+      "ENEMY_SPAWN",
+      "ICE"
+    ],
+    [
+      "ICE",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ICE"
+    ],
+    [
+      "ICE",
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "ICE"
+    ],
+    [
+      "ICE",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ICE",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ICE",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ICE"
+    ],
+    [
+      "ICE",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "ICE",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "ICE",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "ICE"
+    ],
+    [
+      "ICE",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ICE",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ICE",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ICE"
+    ],
+    [
+      "ICE",
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "ICE"
+    ],
+    [
+      "ICE",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ICE",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ICE",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ICE"
+    ],
+    [
+      "ICE",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "ICE",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "ICE",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "ICE"
+    ],
+    [
+      "ICE",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ICE",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ICE",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ICE"
+    ],
+    [
+      "ICE",
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "ICE"
+    ],
+    [
+      "ICE",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ICE"
+    ],
+    [
+      "ICE",
+      "ICE",
+      "ICE",
+      "ICE",
+      "PLAYER_SPAWN",
+      "ICE",
+      "BASE",
+      "ICE",
+      "PLAYER_SPAWN",
+      "ICE",
+      "ICE",
+      "ICE",
+      "ICE"
+    ]
+  ],
+  "playerSpawns": [
+    {
+      "x": 4.5,
+      "y": 12.5
+    },
+    {
+      "x": 8.5,
+      "y": 12.5
+    }
+  ],
+  "enemySpawns": [
+    {
+      "x": 1.5,
+      "y": 0.5
+    },
+    {
+      "x": 6.5,
+      "y": 0.5
+    },
+    {
+      "x": 11.5,
+      "y": 0.5
+    }
+  ],
+  "base": {
+    "x": 6.5,
+    "y": 12.5
+  },
+  "enemyWaves": [
+    {
+      "count": 10,
+      "types": [
+        "scout",
+        "assault"
+      ],
+      "interval": 1.38
+    }
+  ]
+}

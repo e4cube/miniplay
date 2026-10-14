@@ -1,0 +1,241 @@
+{
+  "id": "map-010",
+  "name": "Fortress Siege",
+  "width": 13,
+  "height": 13,
+  "tiles": [
+    [
+      "EMPTY",
+      "ENEMY_SPAWN",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ENEMY_SPAWN",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ENEMY_SPAWN",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "STEEL",
+      "STEEL",
+      "STEEL",
+      "STEEL",
+      "STEEL",
+      "STEEL",
+      "STEEL",
+      "STEEL",
+      "STEEL",
+      "STEEL",
+      "STEEL",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "STEEL",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "BRICK",
+      "BRICK",
+      "BRICK",
+      "BRICK",
+      "BRICK",
+      "BRICK",
+      "BRICK",
+      "EMPTY",
+      "STEEL",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "STEEL",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "STEEL",
+      "STEEL",
+      "STEEL",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "STEEL",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "STEEL",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "STEEL",
+      "STEEL",
+      "STEEL",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "STEEL",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "STEEL",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "BRICK",
+      "BRICK",
+      "BRICK",
+      "BRICK",
+      "BRICK",
+      "BRICK",
+      "BRICK",
+      "EMPTY",
+      "STEEL",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "STEEL",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "STEEL",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "STEEL",
+      "STEEL",
+      "STEEL",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "STEEL",
+      "STEEL",
+      "STEEL",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "PLAYER_SPAWN",
+      "EMPTY",
+      "BASE",
+      "EMPTY",
+      "PLAYER_SPAWN",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY"
+    ]
+  ],
+  "playerSpawns": [
+    {
+      "x": 4.5,
+      "y": 12.5
+    },
+    {
+      "x": 8.5,
+      "y": 12.5
+    }
+  ],
+  "enemySpawns": [
+    {
+      "x": 1.5,
+      "y": 0.5
+    },
+    {
+      "x": 6.5,
+      "y": 0.5
+    },
+    {
+      "x": 11.5,
+      "y": 0.5
+    }
+  ],
+  "base": {
+    "x": 6.5,
+    "y": 12.5
+  },
+  "enemyWaves": [
+    {
+      "count": 13,
+      "types": [
+        "heavy",
+        "elite"
+      ],
+      "interval": 1.17
+    }
+  ]
+}

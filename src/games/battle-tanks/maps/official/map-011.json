@@ -1,0 +1,241 @@
+{
+  "id": "map-011",
+  "name": "Twin Base",
+  "width": 13,
+  "height": 13,
+  "tiles": [
+    [
+      "EMPTY",
+      "ENEMY_SPAWN",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ENEMY_SPAWN",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "ENEMY_SPAWN",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "BRICK",
+      "BRICK",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "BRICK",
+      "BRICK",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "EMPTY",
+      "WATER",
+      "WATER",
+      "WATER",
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "WATER",
+      "WATER",
+      "WATER",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "STEEL",
+      "STEEL",
+      "STEEL",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "STEEL",
+      "STEEL",
+      "STEEL"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "STEEL",
+      "STEEL",
+      "STEEL",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "STEEL",
+      "STEEL",
+      "STEEL"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "WATER",
+      "WATER",
+      "WATER",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "BRICK",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY"
+    ],
+    [
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "PLAYER_SPAWN",
+      "EMPTY",
+      "BASE",
+      "EMPTY",
+      "PLAYER_SPAWN",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY",
+      "EMPTY"
+    ]
+  ],
+  "playerSpawns": [
+    {
+      "x": 4.5,
+      "y": 12.5
+    },
+    {
+      "x": 8.5,
+      "y": 12.5
+    }
+  ],
+  "enemySpawns": [
+    {
+      "x": 1.5,
+      "y": 0.5
+    },
+    {
+      "x": 6.5,
+      "y": 0.5
+    },
+    {
+      "x": 11.5,
+      "y": 0.5
+    }
+  ],
+  "base": {
+    "x": 6.5,
+    "y": 12.5
+  },
+  "enemyWaves": [
+    {
+      "count": 14,
+      "types": [
+        "heavy",
+        "elite"
+      ],
+      "interval": 1.1
+    }
+  ]
+}

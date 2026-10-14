@@ -1,0 +1,19 @@
+import { powerupLabels,type GameState } from '../engine/core';
+import type { BattleMap, TileType } from '../maps/schema';
+export const tileNames:Record<TileType,string>={EMPTY:'grass-ground',PLAYER_SPAWN:'grass-ground',ENEMY_SPAWN:'grass-ground',BRICK:'brick-wall',STEEL:'steel-wall',WATER:'water',GRASS:'tall-grass',ICE:'ice',BASE:'base-ground'};
+const keys:Record<TileType,string>={EMPTY:'tileGrass',PLAYER_SPAWN:'tileGrass',ENEMY_SPAWN:'tileGrass',BRICK:'tileBrick',STEEL:'tileSteel',WATER:'tileWater',GRASS:'tileGrass',ICE:'tileIce',BASE:'tileBaseGround'};
+export function drawMap(ctx:CanvasRenderingContext2D,map:BattleMap,tiles:TileType[][],art:Map<string,HTMLImageElement>,size:number,showGrass=true){
+ const u=size/map.width;
+ tiles.forEach((row,y)=>row.forEach((tile,col)=>{const im=art.get(keys[tile]);if(im)ctx.drawImage(im,col*u,y*u,u+.25,u+.25);else{ctx.fillStyle='#303b2b';ctx.fillRect(col*u,y*u,u+1,u+1)}}));
+ const base=art.get('tileBase');if(base)ctx.drawImage(base,(map.base.x-.48)*u,(map.base.y-.48)*u,u*.96,u*.96);
+ const grass=art.get('tileTallGrass');if(showGrass&&grass)tiles.forEach((row,y)=>row.forEach((tile,col)=>{if(tile==='GRASS')ctx.drawImage(grass,col*u,y*u,u+.25,u+.25)}));
+}
+export function drawBattle(ctx:CanvasRenderingContext2D,s:GameState,art:Map<string,HTMLImageElement>,size:number){
+ const u=size/s.map.width;drawMap(ctx,s.map,s.tiles,art,size,false);
+ s.tanks.forEach(t=>{ctx.save();ctx.translate(t.x*u,t.y*u);ctx.rotate({up:0,right:Math.PI/2,down:Math.PI,left:-Math.PI/2}[t.direction]);const im=art.get(t.player===1?'player1':t.player===2?'player2':t.enemy??'scout');if(im)ctx.drawImage(im,-u*.55,-u*.55,u*1.1,u*1.1);else{ctx.fillStyle=t.enemy?'#d46a45':t.player===2?'#56a3e7':'#87bd67';ctx.fillRect(-u*.32,-u*.35,u*.64,u*.7);ctx.fillStyle='#ddd';ctx.fillRect(-u*.06,-u*.5,u*.12,u*.5)}ctx.restore();if(t.shield>0){ctx.strokeStyle='#77ddff';ctx.lineWidth=2;ctx.beginPath();ctx.arc(t.x*u,t.y*u,u*.52,0,Math.PI*2);ctx.stroke()}if(t.hp>1){ctx.fillStyle='#151c19';ctx.fillRect((t.x-.4)*u,(t.y+.45)*u,u*.8,3);ctx.fillStyle=t.enemy?'#d98055':'#b7dd86';ctx.fillRect((t.x-.4)*u,(t.y+.45)*u,u*.8*Math.min(1,t.hp/5),3)}});
+ ctx.fillStyle='#fff2b0';s.bullets.forEach(b=>ctx.fillRect(b.x*u-2,b.y*u-2,4,4));
+ const grass=art.get('tileTallGrass');if(grass)s.tiles.forEach((row,y)=>row.forEach((tile,col)=>{if(tile==='GRASS'){ctx.globalAlpha=.72;ctx.drawImage(grass,col*u,y*u,u+.25,u+.25);ctx.globalAlpha=1}}));
+ const letters={rapid:'R',double:'D',armor:'A',speed:'S',shield:'◎',repair:'+'};
+ for(const item of s.pickups){if(item.ttl<4&&Math.floor(item.ttl*6)%2===0)continue;ctx.fillStyle='#163844';ctx.strokeStyle='#80edee';ctx.lineWidth=2;ctx.beginPath();ctx.arc(item.x*u,item.y*u,u*.32,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle='#dcffff';ctx.font=`bold ${u*.35}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(letters[item.kind],item.x*u,item.y*u);ctx.font=`${Math.max(8,u*.15)}px sans-serif`;ctx.fillText(powerupLabels[item.kind],item.x*u,(item.y+.5)*u)}
+ for(const fx of s.effects){const progress=fx.age/.5,radius=(.15+progress*.65)*u;ctx.globalAlpha=1-progress;const glow=ctx.createRadialGradient(fx.x*u,fx.y*u,0,fx.x*u,fx.y*u,radius);glow.addColorStop(0,'#fff4b0');glow.addColorStop(.4,'#ed9139');glow.addColorStop(1,'#ed913900');ctx.fillStyle=glow;ctx.beginPath();ctx.arc(fx.x*u,fx.y*u,radius,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1}
+}

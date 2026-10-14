@@ -1,0 +1,26 @@
+import {expect,test} from './fixtures';
+const custom={id:'qa-map',name:'QA Arena',width:9,height:9,tiles:Array.from({length:9},()=>Array(9).fill('EMPTY')),base:{x:4.5,y:8.5},playerSpawns:[{x:2.5,y:8.5},{x:6.5,y:8.5}],enemySpawns:[{x:2.5,y:.5}],enemyWaves:[{count:1,types:['scout'],interval:.25}]};
+test('custom map imports, exports, persists and launches from the saved map menu',async({page})=>{
+ await page.goto('/games/battle-tanks/editor');await page.getByLabel('Import map JSON').setInputFiles({name:'qa-map.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(custom))});
+ await expect(page.getByRole('status')).toContainText('imported');await page.getByRole('button',{name:'Save',exact:true}).click();await page.reload();await expect(page.getByLabel('Map name',{exact:true})).toHaveValue('QA Arena');
+ const downloadPromise=page.waitForEvent('download');await page.getByRole('button',{name:'Export JSON',exact:true}).click();const download=await downloadPromise;expect(download.suggestedFilename()).toBe('qa-map.json');const stream=await download.createReadStream();const chunks:Buffer[]=[];for await(const chunk of stream!)chunks.push(chunk);expect(JSON.parse(Buffer.concat(chunks).toString())).toEqual(custom);
+ await page.getByRole('link',{name:'Battle Tanks',exact:true}).click();await page.getByRole('button',{name:'CUSTOM MAPS',exact:true}).click();await page.getByRole('button',{name:'QA Arena',exact:true}).click();await expect(page.getByText('QA Arena · Enemies 1',{exact:true})).toBeVisible();
+});
+test('held firing wins a real custom round and completion events do not duplicate',async({page})=>{
+ await page.addInitScript(m=>sessionStorage.setItem('battle-tanks-test-map',JSON.stringify(m)),custom);await page.goto('/games/battle-tanks?testMap=1');await page.getByRole('button',{name:'PLAY TEST MAP',exact:true}).click();await page.keyboard.down('Space');await expect(page.getByRole('dialog',{name:'Victory',exact:true})).toBeVisible({timeout:15000});await page.keyboard.up('Space');
+ await expect(page.getByLabel('Battle Tanks battlefield')).toHaveCount(0);
+ if(process.env.NEXT_PUBLIC_GA_ID){const events=()=>page.evaluate(()=>((window as Window & {dataLayer?:ArrayLike<unknown>[]}).dataLayer||[]).map(x=>Array.from(x)).filter(x=>x[0]==='event').map(x=>x[1]));await expect.poll(async()=>(await events()).filter(x=>x==='level_complete').length).toBe(1);expect((await events()).filter(x=>x==='game_complete')).toHaveLength(1);expect((await events()).filter(x=>x==='tank_destroyed')).toHaveLength(1)}
+ await page.getByRole('button',{name:'RESTART',exact:true}).click();await expect(page.getByText('QA Arena · Enemies 1',{exact:true})).toBeVisible();
+});
+test('co-op exposes independent status and pause survives settings roundtrip',async({page})=>{
+ await page.goto('/games/battle-tanks');await page.getByRole('button',{name:'LOCAL CO-OP',exact:true}).click();await page.getByRole('button',{name:/Level 1:/}).click();await expect(page.getByText('PLAYER 2 HP',{exact:true})).toBeVisible();await page.keyboard.press('Escape');await expect(page.getByRole('dialog',{name:'Pause menu'})).toBeVisible();await page.getByRole('button',{name:'SETTINGS',exact:true}).click();await page.getByLabel('Sound effects').uncheck();await page.getByRole('button',{name:'BACK',exact:true}).click();await page.getByRole('button',{name:'RESUME',exact:true}).click();await expect(page.getByRole('button',{name:'Pause',exact:true})).toBeVisible();await page.reload();await page.getByRole('button',{name:'SETTINGS',exact:true}).click();await expect(page.getByLabel('Sound effects')).not.toBeChecked();
+});
+
+test('mobile held direction moves the tank and cancellation releases input without scrolling',async({page},info)=>{
+ test.skip(info.project.name!=='mobile');await page.goto('/games/battle-tanks');await page.getByRole('button',{name:'CAMPAIGN',exact:true}).click();await page.getByRole('button',{name:/Level 1:/}).click();
+ await page.evaluate(()=>{const ctx=document.querySelector<HTMLCanvasElement>('canvas[aria-label="Battle Tanks battlefield"]')!.getContext('2d')!,original=ctx.translate.bind(ctx);ctx.translate=(x,y)=>{if(y>700)(window as Window & {tankX?:number}).tankX=x;original(x,y)}});
+ const x=()=>page.evaluate(()=>(window as Window & {tankX?:number}).tankX??0);await expect.poll(x).toBeGreaterThan(0);const before=await x(),scrollBefore=await page.evaluate(()=>scrollY);
+ const move=page.getByRole('button',{name:'Move left',exact:true});await move.scrollIntoViewIfNeeded();const box=(await move.boundingBox())!,session=await page.context().newCDPSession(page);const scroll=await page.evaluate(()=>scrollY);
+ await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:box.x+box.width/2,y:box.y+box.height/2}]});await expect.poll(x).toBeLessThan(before-12);await session.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+ const stopped=await x();await expect.poll(async()=>{await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));return x()}).toBe(stopped);expect(await page.evaluate(()=>scrollY)).toBe(scroll);expect(scrollBefore).toBeGreaterThanOrEqual(0);await session.detach();
+});
