@@ -21,6 +21,7 @@ const map={
   "connect-four":dynamic(()=>import("./connect-four/Game"),{ssr:false,loading:Loading}),
   "2048-merge":dynamic(()=>import("./2048-merge/Game"),{ssr:false,loading:Loading}),
   "tank-duel":dynamic(()=>import("./tank-duel/Game"),{ssr:false,loading:Loading}),
+  "battle-tanks":dynamic(()=>import("./battle-tanks/Game"),{ssr:false,loading:Loading}),
   "pixel-fighters":dynamic(()=>import("./pixel-fighters/Game"),{ssr:false,loading:Loading}),
   "galaxy-strike":dynamic(()=>import("./galaxy-strike/Game"),{ssr:false,loading:Loading}),
   "neon-runner":dynamic(()=>import("./neon-runner/Game"),{ssr:false,loading:Loading}),
