@@ -6,7 +6,7 @@ export async function loadArt(onProgress = () => {}) {
     const image = new Image();
     image.onload = () => { ART[name] = image; onProgress(++loaded / entries.length); resolve(); };
     image.onerror = () => reject(new Error(`无法加载美术资源：${name}`));
-    image.src = `assets/${name}.png`;
+    image.src = `assets/${name}.webp`;
   })));
 }
 
