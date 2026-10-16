@@ -6,10 +6,17 @@ export function drawMap(ctx:CanvasRenderingContext2D,map:BattleMap,tiles:TileTyp
  const u=size/map.width;
  tiles.forEach((row,y)=>row.forEach((tile,col)=>{const im=art.get(keys[tile]);if(im)ctx.drawImage(im,col*u,y*u,u+.25,u+.25);else{ctx.fillStyle='#303b2b';ctx.fillRect(col*u,y*u,u+1,u+1)}}));
  const base=art.get('tileBase');if(base)ctx.drawImage(base,(map.base.x-.48)*u,(map.base.y-.48)*u,u*.96,u*.96);
+ // A headquarters is a map objective, not an additional player tank.
+ ctx.save();const bx=map.base.x*u,by=map.base.y*u;
+ ctx.strokeStyle='#ffe09a';ctx.lineWidth=Math.max(1,u*.025);ctx.strokeRect(bx-u*.47,by-u*.47,u*.94,u*.94);
+ ctx.fillStyle='#18231f';ctx.fillRect(bx-u*.36,by+u*.12,u*.72,u*.29);
+ ctx.font=`bold ${Math.max(9,u*.23)}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#ffe09a';ctx.fillText('HQ',bx,by+u*.27);
+ ctx.beginPath();ctx.moveTo(bx+u*.34,by-u*.12);ctx.lineTo(bx+u*.34,by-u*.72);ctx.stroke();ctx.fillStyle='#ffce63';ctx.beginPath();ctx.moveTo(bx+u*.34,by-u*.72);ctx.lineTo(bx+u*.66,by-u*.61);ctx.lineTo(bx+u*.34,by-u*.49);ctx.fill();ctx.restore();
  const grass=art.get('tileTallGrass');if(showGrass&&grass)tiles.forEach((row,y)=>row.forEach((tile,col)=>{if(tile==='GRASS')ctx.drawImage(grass,col*u,y*u,u+.25,u+.25)}));
 }
 export function drawBattle(ctx:CanvasRenderingContext2D,s:GameState,art:Map<string,HTMLImageElement>,size:number){
  const u=size/s.map.width;drawMap(ctx,s.map,s.tiles,art,size,false);
+ ctx.save();ctx.fillStyle='#17231f';ctx.fillRect((s.map.base.x-.42)*u,(s.map.base.y+.43)*u,u*.84,u*.09);ctx.fillStyle=s.baseHp>1?'#f8d87d':'#ef8068';ctx.fillRect((s.map.base.x-.42)*u,(s.map.base.y+.43)*u,u*.84*Math.max(0,s.baseHp)/3,u*.09);ctx.restore();
  s.tanks.forEach(t=>{ctx.save();ctx.translate(t.x*u,t.y*u);ctx.rotate({up:0,right:Math.PI/2,down:Math.PI,left:-Math.PI/2}[t.direction]);const im=art.get(t.player===1?'player1':t.player===2?'player2':t.enemy??'scout');if(im)ctx.drawImage(im,-u*.55,-u*.55,u*1.1,u*1.1);else{ctx.fillStyle=t.enemy?'#d46a45':t.player===2?'#56a3e7':'#87bd67';ctx.fillRect(-u*.32,-u*.35,u*.64,u*.7);ctx.fillStyle='#ddd';ctx.fillRect(-u*.06,-u*.5,u*.12,u*.5)}ctx.restore();if(t.player){ctx.save();ctx.font=`bold ${Math.max(10,u*.22)}px sans-serif`;ctx.textAlign='center';ctx.textBaseline='bottom';ctx.fillStyle='#101815';ctx.fillRect((t.x-.28)*u,(t.y-.85)*u,u*.56,u*.25);ctx.fillStyle=t.player===1?'#b9f799':'#8ed2ff';ctx.fillText(`P${t.player}`,t.x*u,(t.y-.6)*u);ctx.restore()}else{ctx.save();ctx.font=`bold ${Math.max(9,u*.16)}px sans-serif`;ctx.textAlign='center';ctx.fillStyle='#ffe0b6';ctx.fillText('CPU',t.x*u,(t.y-.62)*u);ctx.restore()}if(t.shield>0){ctx.strokeStyle='#77ddff';ctx.lineWidth=2;ctx.beginPath();ctx.arc(t.x*u,t.y*u,u*.52,0,Math.PI*2);ctx.stroke()}if(t.hp>1){ctx.fillStyle='#151c19';ctx.fillRect((t.x-.4)*u,(t.y+.45)*u,u*.8,3);ctx.fillStyle=t.enemy?'#d98055':'#b7dd86';ctx.fillRect((t.x-.4)*u,(t.y+.45)*u,u*.8*Math.min(1,t.hp/5),3)}});
  ctx.fillStyle='#fff2b0';s.bullets.forEach(b=>ctx.fillRect(b.x*u-2,b.y*u-2,4,4));
  const grass=art.get('tileTallGrass');if(grass)s.tiles.forEach((row,y)=>row.forEach((tile,col)=>{if(tile==='GRASS'){ctx.globalAlpha=.72;ctx.drawImage(grass,col*u,y*u,u+.25,u+.25);ctx.globalAlpha=1}}));
