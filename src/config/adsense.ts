@@ -1,7 +1,7 @@
 export const adsense = {
-  client: process.env.NEXT_PUBLIC_ADSENSE_CLIENT || 'ca-pub-9031551450005780',
+  client: process.env.NEXT_PUBLIC_ADSENSE_CLIENT || 'ca-pub-6098511288909511',
   slots: {
-    'game-bottom': process.env.NEXT_PUBLIC_ADSENSE_GAME_BOTTOM_SLOT || '8652505817',
+    'game-bottom': process.env.NEXT_PUBLIC_ADSENSE_GAME_BOTTOM_SLOT || '',
     inline: process.env.NEXT_PUBLIC_ADSENSE_INLINE_SLOT ?? '',
   },
 };
