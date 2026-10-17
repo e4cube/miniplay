@@ -2,6 +2,7 @@
 import dynamic from "next/dynamic";
 import{useI18n}from'@/i18n/LocaleContext';const Loading=()=>{const{t}=useI18n();return <p>{t.common.loading}</p>};
 const map={
+  "starlight-keeper":dynamic(()=>import("./starlight-keeper/Game"),{ssr:false,loading:Loading}),
   "meow-cafe":dynamic(()=>import("./meow-cafe/Game"),{ssr:false,loading:Loading}),
   "neon-rain":dynamic(()=>import("./neon-rain/Game"),{ssr:false,loading:Loading}),
   "gem-match":dynamic(()=>import("./gem-match/Game"),{ssr:false,loading:Loading}),
