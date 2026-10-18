@@ -5,3 +5,7 @@
 .composeLink{align-self:center;color:#dec28e;text-decoration:none;font-size:12px;margin-right:8px}@media(max-width:700px){.composeLink{font-size:9px;margin:0}.tools{gap:4px}header{padding:13px 10px}.brand span{font-size:12px}}
 .starCount{font-size:11px;color:#e6c58c;letter-spacing:1px}#map{flex-wrap:wrap;justify-content:center;width:max-content}#map .secretLevel{border-color:#cba4ed88;color:#e2c6ff}@media(max-width:700px){#map{width:95vw;gap:4px}#map button{font-size:8px;padding:8px}#choices button{flex:1 1 45%}}
 .homeLink{color:#e8cc94;text-decoration:none;font-size:12px;align-self:center;padding:5px}@media(max-width:700px){.homeLink{font-size:9px}.composeLink{display:none}}
+
+/* Compact edge HUD keeps the mobile exploration scene visible. */
+@media(max-width:700px),(pointer:coarse) and (max-height:500px){#quest{top:76px;left:12px;right:12px;width:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px;border:1px solid #ddb97444;border-radius:9px;background:#0a1827b8;pointer-events:none}#quest .eyebrow,#quest #objective,#quest .hint{display:none}#quest h2{font-size:13px;line-height:1.4;margin:0;white-space:nowrap}#quest #progress{margin:0;gap:4px;flex-shrink:0}#quest .starCount{font-size:10px;letter-spacing:0}}
+@media(max-height:500px) and (pointer:coarse){#quest{top:58px;left:auto;right:12px;max-width:320px}header{padding:10px 12px}#quest h2{font-size:12px}}
