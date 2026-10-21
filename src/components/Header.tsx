@@ -1,3 +1,23 @@
 "use client";
-import Link from 'next/link';import{useState}from'react';import{usePathname}from'next/navigation';import{localizedPath,pathWithoutLocale,type Locale}from'@/i18n/config';import PortalIcon from './PortalIcon';
-export default function Header(){const[open,setOpen]=useState(false),pathname=usePathname(),zh=pathname==='/zh'||pathname.startsWith('/zh/'),prefix=zh?'/zh':'',other:Locale=zh?'en':'zh-CN',otherPath=localizedPath(pathWithoutLocale(pathname),other);const items=[['/games',zh?'发现游戏':'Discover'],['/category/action',zh?'动作冒险':'Action'],['/category/puzzle',zh?'益智休闲':'Puzzles'],['/category/2-player',zh?'双人同乐':'Play together']];return <header className="portal-header"><div className="container header-inner"><Link className="brand" href={prefix||'/'} aria-label="GameVado home"><span className="brand-symbol"><PortalIcon name="game" size={25}/></span><span>GAME<span className="brand-accent">VADO</span><small>YOUR NEXT PLAY.</small></span></Link><nav className="desktop-nav" aria-label={zh?'主导航':'Main navigation'}>{items.map(([path,label])=><Link key={path} className={pathname===prefix+path?'active':''} href={prefix+path}>{label}</Link>)}</nav><div className="header-actions"><Link className="icon-button" href={prefix+'/games'} aria-label={zh?'搜索游戏':'Search games'}><PortalIcon name="search"/></Link><Link className="language-switch" href={otherPath} hrefLang={other}><PortalIcon name="globe" size={16}/>{zh?'EN':'中文'}</Link><button className="icon-button mobile-menu" aria-expanded={open} aria-controls="mobile-navigation" aria-label={zh?'展开导航':'Toggle navigation'} onClick={()=>setOpen(!open)}><PortalIcon name={open?'close':'menu'}/></button></div></div>{open&&<nav id="mobile-navigation" className="mobile-navigation container">{items.map(([path,label])=><Link onClick={()=>setOpen(false)} key={path} href={prefix+path}>{label}</Link>)}</nav>}</header>}
+import Link from 'next/link';
+import { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { localizedPath, pathWithoutLocale, type Locale } from '@/i18n/config';
+import PortalIcon from './PortalIcon';
+
+export default function Header() {
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const zh = pathname === '/zh' || pathname.startsWith('/zh/');
+  const prefix = zh ? '/zh' : '';
+  const other: Locale = zh ? 'en' : 'zh-CN';
+  const otherPath = localizedPath(pathWithoutLocale(pathname), other);
+  const items = [['/games', zh ? '发现游戏' : 'Discover'], ['/category/action', zh ? '动作冒险' : 'Action'],
+    ['/category/puzzle', zh ? '益智休闲' : 'Puzzles'], ['/category/2-player', zh ? '双人同乐' : 'Play together'],
+    ['/blog', zh ? '文章' : 'Journal']];
+  return <header className="portal-header"><div className="container header-inner">
+    <Link className="brand" href={prefix || '/'} aria-label="GameVado home"><span className="brand-symbol"><PortalIcon name="game" size={25} /></span><span>GAME<span className="brand-accent">VADO</span><small>YOUR NEXT PLAY.</small></span></Link>
+    <nav className="desktop-nav" aria-label={zh ? '主导航' : 'Main navigation'}>{items.map(([path, label]) => <Link key={path} className={pathname === prefix + path ? 'active' : ''} href={prefix + path}>{label}</Link>)}</nav>
+    <div className="header-actions"><Link className="icon-button" href={prefix + '/games'} aria-label={zh ? '搜索游戏' : 'Search games'}><PortalIcon name="search" /></Link><Link className="language-switch" href={otherPath} hrefLang={other}><PortalIcon name="globe" size={16} />{zh ? 'EN' : '中文'}</Link><button className="icon-button mobile-menu" aria-expanded={open} aria-controls="mobile-navigation" aria-label={zh ? '展开导航' : 'Toggle navigation'} onClick={() => setOpen(!open)}><PortalIcon name={open ? 'close' : 'menu'} /></button></div>
+  </div>{open && <nav id="mobile-navigation" className="mobile-navigation container">{items.map(([path, label]) => <Link onClick={() => setOpen(false)} key={path} href={prefix + path}>{label}</Link>)}</nav>}</header>;
+}

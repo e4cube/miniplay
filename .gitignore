@@ -9,3 +9,4 @@ outputs/
 test-results/
 playwright-report/
 *.tsbuildinfo
+content/drafts/
