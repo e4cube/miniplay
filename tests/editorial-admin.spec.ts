@@ -4,6 +4,16 @@ import { signSession } from '../src/lib/editorial/auth-core';
 const cookie = signSession(123, 'editorial-test-secret-12345678901234567890');
 const longBody = 'Original hands-on context and useful details for the player. '.repeat(9);
 
+test('login issues an HttpOnly OAuth state cookie and redirects to GitHub', async ({ request }) => {
+  const response = await request.get('/api/editorial/auth/login', { maxRedirects: 0 });
+  expect(response.status()).toBe(307);
+  expect(response.headers().location).toContain('https://github.com/login/oauth/authorize?');
+  const stateCookie = response.headers()['set-cookie'];
+  expect(stateCookie).toContain('gv_editorial_oauth_state=');
+  expect(stateCookie).toContain('HttpOnly');
+  expect(stateCookie).toContain('SameSite=lax');
+});
+
 test('anonymous visitor can view login but cannot publish; cross-origin requests fail', async ({ page, request }) => {
   await page.goto('/admin/editorial');
   await expect(page.getByRole('link', { name: 'Sign in with GitHub' })).toBeVisible();
@@ -54,3 +64,4 @@ test('publisher API validates input before needing GitHub credentials', async ({
   expect(unconfigured.status()).toBe(503);
   expect((await unconfigured.json()).code).toBe('NOT_CONFIGURED');
 });
+
