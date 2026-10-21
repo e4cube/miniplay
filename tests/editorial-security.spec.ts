@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { signSession, verifySession } from '../src/lib/editorial/auth-core';
+import { allowLoginAttempt, signSession, verifySession } from '../src/lib/editorial/auth-core';
 import { validateEditorialInput } from '../src/lib/editorial/validation';
 import { addToManifest, articlePath } from '../src/lib/editorial/manifest';
 import { publishArticle, PublishError } from '../src/lib/editorial/github';
@@ -18,6 +18,12 @@ test('signed admin sessions expire, reject tampering, and reject other users', (
   expect(verifySession(signed, secret, 456, 1001)).toBe(false);
   expect(verifySession(signed, secret, 123, 1000 + 12 * 60 * 60 * 1000)).toBe(false);
   expect(verifySession(`${signed}x`, secret, 123, 1001)).toBe(false);
+});
+
+test('login attempt backstop limits repeated requests', () => {
+  const ip = `editorial-test-${Date.now()}`;
+  for (let i = 0; i < 5; i++) expect(allowLoginAttempt(ip)).toBe(true);
+  expect(allowLoginAttempt(ip)).toBe(false);
 });
 
 test('validation rejects invalid and low-quality article inputs', () => {
@@ -78,6 +84,17 @@ test('protected branch creates draft review PR without updating main', async () 
   expect(mock.calls.find(call => call.url.endsWith('/pulls'))?.body?.draft).toBe(true);
 });
 
+test('existing article slug is rejected before creating a Git tree', async () => {
+  const mock = githubMock();
+  const fetcher = (async (input: RequestInfo | URL, init?: RequestInit) => {
+    if (String(input).includes('/contents/content/posts/original-game-report.en.json'))
+      return new Response(JSON.stringify({ path: articlePath(article) }), { status: 200 });
+    return mock.fetcher(input, init);
+  }) as typeof fetch;
+  await expect(publishArticle(article, fetcher)).rejects.toMatchObject({ code: 'ALREADY_EXISTS' });
+  expect(mock.calls.some(call => call.url.endsWith('/git/trees'))).toBe(false);
+});
+
 test('GitHub API errors do not leak credentials or update the branch', async () => {
   const mock = githubMock(false, '/git/trees');
   await expect(publishArticle(article, mock.fetcher)).rejects.toMatchObject({ code: 'GITHUB_UNAVAILABLE' } satisfies Partial<PublishError>);
@@ -85,3 +102,4 @@ test('GitHub API errors do not leak credentials or update the branch', async () 
   try { await publishArticle(article, mock.fetcher); }
   catch (error) { expect(String(error)).not.toContain('SECRET-DO-NOT-RETURN'); }
 });
+
