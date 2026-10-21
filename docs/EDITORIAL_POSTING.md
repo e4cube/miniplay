@@ -1,31 +1,21 @@
-# Publishing GameVado articles through Git
+# GameVado editorial publishing
 
-Editorial articles are files in this repository, not Supabase rows. There is no web posting form. Player UGC remains disabled; its Supabase infrastructure is separate.
+The private dashboard is `/admin/editorial`. It uses GitHub OAuth for the one configured administrator; visitors and players can still browse without accounts. Articles remain Git-managed JSON in `content/posts/` and approved imports in `content/posts/index.ts`. No Supabase data is used.
 
-## Write and review
+## One-time production setup
 
-1. Ask ChatGPT/Codex to draft an original English article (and optionally a Chinese translation). Supply your own notes and sources. Verify dates, claims, rights, and whether first-person experience is genuine. For an unreleased game such as GTA 6, use `news`, never claim hands-on experience.
-2. Keep unpublished drafts outside the repository or under `content/drafts/` (gitignored). **Do not commit confidential drafts**: anything committed to a public Git repository can be read even when not linked from the site.
-3. Create one UTF-8 JSON file per language in `content/posts/`, for example `gta6-preview.en.json`. Use the schema below. Text is plain text, not HTML or Markdown. Separate paragraphs in `body` with two newline characters (`\n\n` in JSON). An optional `videoUrl` may point to a YouTube, Bilibili, X, or TikTok video; the site embeds only the first two and links the latter two. Verify you have the right to use linked media.
-4. After editorial approval, import the JSON file in `content/posts/index.ts` and add it to `editorialSources`. Merely creating a file does not publish it. Each language is independently approved. The build rejects invalid or duplicate articles.
-5. Run `pnpm lint`, `pnpm exec tsc --noEmit`, `pnpm build`, and `pnpm exec playwright test tests/editorial.spec.ts`. Review the resulting `/blog/{slug}` or `/zh/blog/{slug}` page and sitemap. Commit and open a pull request for human review. Merge and deploy only after approval.
+1. Create a GitHub OAuth App under the administrator's GitHub account. Set homepage to `https://gamevado.com` and callback to `https://gamevado.com/api/editorial/auth/callback`. Copy its client ID and secret to Vercel server environment variables. Find the administrator's **numeric GitHub user ID** from the GitHub API, not their changeable username.
+2. Create a fine-grained GitHub personal access token for **only** `jin123yi123-sudo/miniplay`. Repository permissions: **Contents: read and write**. If protected-branch fallback should open draft PRs, add **Pull requests: read and write**. No organization-wide or classic `repo` token is needed. Give the token to the deployment environment only; rotate it if exposed.
+3. Configure all `EDITORIAL_*` entries from `.env.example` in Vercel for the production environment. Set `EDITORIAL_ORIGIN=https://gamevado.com`, repo to `jin123yi123-sudo/miniplay`, branch to the actual deployment branch (normally `main`), and `EDITORIAL_SESSION_SECRET` to at least 32 random bytes (for example, a 64-character hexadecimal string). Never prefix these with `NEXT_PUBLIC_` or paste them into the browser.
+4. Ensure the Vercel project is connected to that repository and builds on commits to the configured branch. A successful Git ref update should then trigger a normal deployment. The dashboard reports a repository commit, not deployment completion; verify the live page after Vercel finishes. If branch protection rejects direct writes, the dashboard creates a complete draft pull request instead. Review and merge it through normal branch rules; it **does not** bypass protection or deploy automatically.
+5. Add a distributed Vercel Firewall rule for the OAuth login and callback paths, for example a per-IP limit of 10 requests in 15 minutes, plus a bot challenge if abuse appears. The app also has a per-instance backstop (5 per IP and 30 total attempts per 15 minutes), but serverless instances do not share that counter. GitHub handles password attempts; this application never receives a GitHub password.
 
-Example (illustrative only; do not publish this placeholder):
+For local development, use a separate GitHub OAuth App callback at `http://localhost:3000/api/editorial/auth/callback`, `EDITORIAL_ORIGIN=http://localhost:3000`, and a token scoped to a disposable test repository. Do not test publishing against production `main`.
 
-```json
-{
-  "slug": "example-game-preview",
-  "locale": "en",
-  "kind": "news",
-  "title": "Example Game: What We Know Before Release",
-  "excerpt": "A concise, original summary of confirmed information and what remains unverified for players following this release.",
-  "body": "Write at least 400 characters of sourced, useful original text here. Separate substantial paragraphs with two newline characters. Do not include HTML or claim gameplay experience before playing the game.",
-  "videoUrl": null,
-  "publishedAt": "2026-10-20",
-  "updatedAt": "2026-10-20"
-}
-```
+## Editing and publishing
 
-`slug` must be lowercase ASCII words separated by hyphens; `locale` is `en` or `zh-CN`; `kind` is `news`, `review`, or `guide`. Title: 12–140 characters; excerpt: 40–320; body: 400–50,000. Dates use `YYYY-MM-DD` and `updatedAt` cannot precede `publishedAt`. Update the latter when materially revising an article. The site generates canonical metadata and sitemap entries only for manifest-approved articles.
+Sign in at `/admin/editorial`, fill the English or Chinese form, and preview before publishing. Required fields: title (12–140 characters), URL slug (lowercase words separated by hyphens), excerpt (40–320), plain-text body (400–50,000), locale (`en` or `zh-CN`), kind (`news`, `review`, `guide`), and publication date (`YYYY-MM-DD`). Separate paragraphs with blank lines. A video link is optional; only allowed YouTube and Bilibili URLs are embedded, while X and TikTok are linked. Each language gets its own JSON file and may share a slug with the other language.
 
-Reusable ChatGPT request: “Using my notes and cited sources, draft an original GameVado article as a JSON file under `content/posts/`. Do not invent firsthand experience or publish unsupported claims. Keep it unlisted until I approve it. After approval, add it to `content/posts/index.ts`, run tests and build, and open a pull request. Do not modify Supabase or game logic.”
+Click Publish once. The service validates again, checks for a duplicate file, and commits the JSON plus manifest update in **one Git tree and one commit**. A branch race returns a retryable conflict. On a directly writable branch, the dashboard shows the future `/blog/{slug}` or `/zh/blog/{slug}` URL; wait for Vercel before opening it. On a protected branch, it shows a draft PR for manual review. Unlisted JSON files are not published or added to the sitemap.
+
+Check factual claims, dates, copyright, and original authorship before publishing. Do not call an unreleased game's preview a first-hand review. The editor does not upload images or videos and does not expose a player posting route.
