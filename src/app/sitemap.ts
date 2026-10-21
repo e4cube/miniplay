@@ -4,9 +4,8 @@ import { games, categoryRegistry } from '@/data/games';
 import { languageAlternates } from '@/i18n/config';
 import { listPublishedPosts } from '@/lib/editorial/posts';
 
-const updated = new Date('2026-09-18');
-
 export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
   const paths = ['/', '/games', '/categories', '/games/match-3', '/games/battle-tanks/editor',
     '/about', '/contact', '/privacy', '/terms',
     ...games.map(game => `/games/${game.slug}`), ...categoryRegistry.map(category => `/category/${category.slug}`)];
@@ -14,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const localPath = locale === 'zh-CN' ? (path === '/' ? '/zh' : `/zh${path}`) : path;
     const languages = Object.fromEntries(Object.entries(languageAlternates(path))
       .map(([key, value]) => [key, absoluteUrl(value)]));
-    return { url: absoluteUrl(localPath), lastModified: updated,
+    return { url: absoluteUrl(localPath), lastModified: now,
       changeFrequency: path.startsWith('/games/') ? 'monthly' as const : 'weekly' as const,
       priority: path === '/' ? 1 : .7, alternates: { languages } };
   }));
