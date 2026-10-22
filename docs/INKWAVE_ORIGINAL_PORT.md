@@ -58,3 +58,25 @@ The candidate's check/smoke commands use POSIX shell syntax, build uses python3,
 No playable GameVado preview is available. Once authoritative source is supplied (or the candidate is explicitly accepted), pin the actual source, complete license notices, run the three upstream scripts with recorded platform adaptations, disable author-hosted multiplayer connections, import all original runtime files, add an isolated review-only catalog/detail route, and execute the full Playwright acceptance matrix.
 Do not publish a catalog entry claiming the original game is installed before those gates pass.
 Only this integration document changes in this recheck; other games, main and production remain untouched.
+
+## Official-source retry after user confirmation
+The official address was retried after the user confirmed it was public.
+- Git OpenSSL with credential helpers disabled: clone failed, requesting a username.
+- GitHub connector: HTTP 404 again.
+- Playwright browser navigation: HTTP 404; title `Page not found · GitHub · GitHub`.
+- Node HTTPS request to the official codeload ZIP endpoint: HTTP 404, body `404: Not Found`.
+- Official raw package.json via web fetch: HTTP 404.
+- Independent Node requests to GitHub API/raw also had timeout/reset errors; these transport errors are not treated as proof about repository visibility.
+
+### Additional candidate audit
+The third-party snapshot cannot pass the requested provenance/file-difference gate:
+- No authoritative checkout or upstream SHA is available for a file-by-file comparison.
+- The only snapshot commit has no upstream parent; its package.json repository URL is an assertion, not proof of byte identity.
+- package-lock.json root metadata says ISC and includes wrangler, while package.json says MIT and omits wrangler. LICENSE itself says MIT. This inconsistency requires resolution before reproducible installation.
+- The bundled Three.js tree lacks a top-level LICENSE/package.json; addon-specific SculptGL license exists. The complete applicable MIT notice must be restored from a verified Three.js release.
+- Font files lack accompanying license notices.
+- No install lifecycle scripts, dependency installation, release/deployment commands, or credential uploads were executed.
+- No production secrets were read.
+- Candidate source review did not establish parity with the current official release. Do not silently treat this snapshot as the complete original.
+
+Required next input: an official Git archive/ZIP including LICENSE, package files and all assets (plus upstream commit SHA if available), or an accessible official mirror with verifiable upstream history. The fallback has not passed verification, so implementation remains blocked under the user's explicit “only after verification” requirement.
