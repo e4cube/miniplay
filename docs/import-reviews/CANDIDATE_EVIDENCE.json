@@ -1,0 +1,216 @@
+{
+  "checked_at": "2026-10-22",
+  "method": "Connected GitHub official repository metadata, recursive trees and raw files; no candidate install/build executed",
+  "repositories": {
+    "doublespeakgames/adarkroom": {
+      "commit": "1fada4620b6c66bd07bf15a3f1eb8223df8bc1d7",
+      "branch": "main",
+      "pushed_at": "2025-05-23T15:33:06Z",
+      "archived": false,
+      "tree_entries": 265,
+      "tree_truncated": false,
+      "files": {
+        "LICENSE.md": {
+          "url": "https://raw.githubusercontent.com/doublespeakgames/adarkroom/1fada4620b6c66bd07bf15a3f1eb8223df8bc1d7/LICENSE.md",
+          "sha256_utf8": "d7fc444cae8da4b95b9d0356b145dfc530d45b16965da953fa02dbb9ce004572",
+          "characters": 16734
+        },
+        "README.md": {
+          "url": "https://raw.githubusercontent.com/doublespeakgames/adarkroom/1fada4620b6c66bd07bf15a3f1eb8223df8bc1d7/README.md",
+          "sha256_utf8": "1dc4d624812f499a9ff84fe211915a7fd48f6744d6b44dc8bf224246adb038db",
+          "characters": 2663
+        },
+        "package.json": {
+          "url": "https://raw.githubusercontent.com/doublespeakgames/adarkroom/1fada4620b6c66bd07bf15a3f1eb8223df8bc1d7/package.json",
+          "sha256_utf8": "164438835c71b2d5a8302e2b26b5c4397bb2bb2cee6188da3552587d9e65ed88",
+          "characters": 446
+        },
+        "lang/zh_cn/strings.js": {
+          "url": "https://raw.githubusercontent.com/doublespeakgames/adarkroom/1fada4620b6c66bd07bf15a3f1eb8223df8bc1d7/lang/zh_cn/strings.js",
+          "sha256_utf8": "96e517f5cfc6b17d2d1be9d3c4a79b37b7e1029ccd3ec9536c94e9098b9d866c",
+          "characters": 67429
+        },
+        "lang/zh_cn/strings.po": {
+          "url": "https://raw.githubusercontent.com/doublespeakgames/adarkroom/1fada4620b6c66bd07bf15a3f1eb8223df8bc1d7/lang/zh_cn/strings.po",
+          "sha256_utf8": "ce19a1cf5f389d8ce4a3e8dec59c2c2689b5b5d350ce95e2fe90ed800a024485",
+          "characters": 76852
+        },
+        "lang/zh_tw/strings.po": {
+          "url": "https://raw.githubusercontent.com/doublespeakgames/adarkroom/1fada4620b6c66bd07bf15a3f1eb8223df8bc1d7/lang/zh_tw/strings.po",
+          "sha256_utf8": "c86f2daedd57f1e1e5b63578b08be67d8a4409382ede53bb63c21dab7111abfa",
+          "characters": 80170
+        },
+        "index.html": {
+          "url": "https://raw.githubusercontent.com/doublespeakgames/adarkroom/1fada4620b6c66bd07bf15a3f1eb8223df8bc1d7/index.html",
+          "sha256_utf8": "f243c303c9352e998dd134df50a52fde397d89f93c75b357156e5afe23a40db4",
+          "characters": 5211
+        },
+        "script/engine.js": {
+          "url": "https://raw.githubusercontent.com/doublespeakgames/adarkroom/1fada4620b6c66bd07bf15a3f1eb8223df8bc1d7/script/engine.js",
+          "sha256_utf8": "e3ab30d0c34cb8cef6a7ab67f88085509eb831ce2b9448a61125cb570a737d88",
+          "characters": 27168
+        }
+      }
+    },
+    "Hextris/hextris": {
+      "commit": "3f4847dc8fd7dab3d1c87e6324b9159d92fbd396",
+      "branch": "gh-pages",
+      "pushed_at": "2023-05-13T16:26:15Z",
+      "archived": false,
+      "tree_entries": 84,
+      "tree_truncated": false,
+      "files": {
+        "LICENSE.md": {
+          "url": "https://raw.githubusercontent.com/Hextris/hextris/3f4847dc8fd7dab3d1c87e6324b9159d92fbd396/LICENSE.md",
+          "sha256_utf8": "ccb349b4132ed7737f25e5adebfe61f3d52dca33708df1e50352320438d1d4c2",
+          "characters": 35178
+        },
+        "README.md": {
+          "url": "https://raw.githubusercontent.com/Hextris/hextris/3f4847dc8fd7dab3d1c87e6324b9159d92fbd396/README.md",
+          "sha256_utf8": "383ac7de93cc0f085ef6d5ffeb08f95e1baf599d33772afd6c51958187f75eaf",
+          "characters": 1802
+        },
+        "index.html": {
+          "url": "https://raw.githubusercontent.com/Hextris/hextris/3f4847dc8fd7dab3d1c87e6324b9159d92fbd396/index.html",
+          "sha256_utf8": "6b4a50382dfeddd36f03b44cc16d9aa15a01b461e7c6463b375ff2210145f4c1",
+          "characters": 11710
+        }
+      }
+    },
+    "victorqribeiro/isocity": {
+      "commit": "c5772412d3e423318f2cf479ebdd50a2b9029d84",
+      "branch": "master",
+      "pushed_at": "2024-10-14T17:37:50Z",
+      "archived": false,
+      "tree_entries": 11,
+      "tree_truncated": false,
+      "files": {
+        "LICENSE": {
+          "url": "https://raw.githubusercontent.com/victorqribeiro/isocity/c5772412d3e423318f2cf479ebdd50a2b9029d84/LICENSE",
+          "sha256_utf8": "20917b8e2cfb3574d262b4d663b1fd206a6bf6c8de7e7f71941b986cb98e02fe",
+          "characters": 1071
+        },
+        "README.md": {
+          "url": "https://raw.githubusercontent.com/victorqribeiro/isocity/c5772412d3e423318f2cf479ebdd50a2b9029d84/README.md",
+          "sha256_utf8": "d7b011a794c7c828dfdd201a017f6f76fa1fec5f4e3b8537cbef01390debc5ec",
+          "characters": 485
+        },
+        "index.html": {
+          "url": "https://raw.githubusercontent.com/victorqribeiro/isocity/c5772412d3e423318f2cf479ebdd50a2b9029d84/index.html",
+          "sha256_utf8": "9989c8f35b98ad540419208fee8642d7b66b9513d599b51d3722d993f2d89dc5",
+          "characters": 1125
+        },
+        "js/main.js": {
+          "url": "https://raw.githubusercontent.com/victorqribeiro/isocity/c5772412d3e423318f2cf479ebdd50a2b9029d84/js/main.js",
+          "sha256_utf8": "0b44bb7acd32d4154a0ef1ac5154164082a990b66f99a93a218d5fede9cabfa3",
+          "characters": 4667
+        }
+      }
+    },
+    "masylum/whatajong": {
+      "commit": "45fe3da7a7d1e87a66ae41b72ee74cc4e0a920d5",
+      "branch": "main",
+      "pushed_at": "2025-06-15T21:30:57Z",
+      "archived": false,
+      "tree_entries": 285,
+      "tree_truncated": false,
+      "files": {
+        "LICENSE": {
+          "url": "https://raw.githubusercontent.com/masylum/whatajong/45fe3da7a7d1e87a66ae41b72ee74cc4e0a920d5/LICENSE",
+          "sha256_utf8": "0f1618a69cba05fc6e7292617c5742e76ab5ceca24f92f39d8765fc422f15695",
+          "characters": 1093
+        },
+        "README.md": {
+          "url": "https://raw.githubusercontent.com/masylum/whatajong/45fe3da7a7d1e87a66ae41b72ee74cc4e0a920d5/README.md",
+          "sha256_utf8": "68725f427b5e12cbf24edbdb93233eed2aa532cf22b5706f7827a717412676b0",
+          "characters": 294
+        },
+        "package.json": {
+          "url": "https://raw.githubusercontent.com/masylum/whatajong/45fe3da7a7d1e87a66ae41b72ee74cc4e0a920d5/package.json",
+          "sha256_utf8": "ee0b62b01dc1f8d8db8a73c3681a018e9ab614bc841f6f794ab1a3eaaa6abee1",
+          "characters": 2685
+        },
+        "vite.config.ts": {
+          "url": "https://raw.githubusercontent.com/masylum/whatajong/45fe3da7a7d1e87a66ae41b72ee74cc4e0a920d5/vite.config.ts",
+          "sha256_utf8": "65a6de3e00ba69e59a0f4d2a0cb0ba04e4e8c0e47a7d632c9052c85bf0b0db5d",
+          "characters": 1103
+        }
+      }
+    },
+    "graememcc/micropolisJS": {
+      "commit": "f13a1624d111d235e804bd80f48ba7c9f66a8e0f",
+      "branch": "main",
+      "pushed_at": "2025-07-13T19:22:15Z",
+      "archived": false,
+      "tree_entries": 186,
+      "tree_truncated": false,
+      "files": {
+        "LICENSE": {
+          "url": "https://raw.githubusercontent.com/graememcc/micropolisJS/f13a1624d111d235e804bd80f48ba7c9f66a8e0f/LICENSE",
+          "sha256_utf8": "ccf59fbc8eebda307b563c23e23104ace3a6e3943d5ade752c5128c2965abc96",
+          "characters": 2360
+        },
+        "COPYING": {
+          "url": "https://raw.githubusercontent.com/graememcc/micropolisJS/f13a1624d111d235e804bd80f48ba7c9f66a8e0f/COPYING",
+          "sha256_utf8": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+          "characters": 35147
+        },
+        "MicropolisPublicNameLicense.md": {
+          "url": "https://raw.githubusercontent.com/graememcc/micropolisJS/f13a1624d111d235e804bd80f48ba7c9f66a8e0f/MicropolisPublicNameLicense.md",
+          "sha256_utf8": "e7bb6df26a98a960a92126c6e5056e3904ca8d62f8a2cd36c9b0ab98b512923e",
+          "characters": 5230
+        },
+        "README.md": {
+          "url": "https://raw.githubusercontent.com/graememcc/micropolisJS/f13a1624d111d235e804bd80f48ba7c9f66a8e0f/README.md",
+          "sha256_utf8": "2d92ad3d2350cf1ce686eaf1e34f0ea146bc77fed15697640084dfe1a80edd60",
+          "characters": 743
+        },
+        "package.json": {
+          "url": "https://raw.githubusercontent.com/graememcc/micropolisJS/f13a1624d111d235e804bd80f48ba7c9f66a8e0f/package.json",
+          "sha256_utf8": "51ea7f566dbff0ae6c1817d09606790f9aa14e04c573a21fb2f497e9d7b47536",
+          "characters": 1214
+        },
+        "css/FONT_LICENSE.markdown": {
+          "url": "https://raw.githubusercontent.com/graememcc/micropolisJS/f13a1624d111d235e804bd80f48ba7c9f66a8e0f/css/FONT_LICENSE.markdown",
+          "sha256_utf8": "b0ce1d29a98f652ee117ee884670778f3b5a91d4e8da7fae21f8defb5956ce4a",
+          "characters": 4432
+        },
+        "index.html": {
+          "url": "https://raw.githubusercontent.com/graememcc/micropolisJS/f13a1624d111d235e804bd80f48ba7c9f66a8e0f/index.html",
+          "sha256_utf8": "68dd2bd10e2f9a1f7d7d8399e6843461dbb649eedb2687b22a56e5982269e8b6",
+          "characters": 29238
+        }
+      }
+    },
+    "ellisonleao/clumsy-bird": {
+      "commit": "fae3d487d5102af29fb3f78431cbd45e9b83aed3",
+      "branch": "master",
+      "pushed_at": "2018-04-13T23:19:54Z",
+      "archived": true,
+      "tree_entries": 60,
+      "tree_truncated": false,
+      "files": {
+        "LICENSE.md": {
+          "url": "https://raw.githubusercontent.com/ellisonleao/clumsy-bird/fae3d487d5102af29fb3f78431cbd45e9b83aed3/LICENSE.md",
+          "sha256_utf8": "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2",
+          "characters": 35141
+        },
+        "README.md": {
+          "url": "https://raw.githubusercontent.com/ellisonleao/clumsy-bird/fae3d487d5102af29fb3f78431cbd45e9b83aed3/README.md",
+          "sha256_utf8": "25fb0c9f1de6235c5ce32b74ac11bf76679dd6538c2bf9659b23c665a4ddc52a",
+          "characters": 967
+        },
+        "package.json": {
+          "url": "https://raw.githubusercontent.com/ellisonleao/clumsy-bird/fae3d487d5102af29fb3f78431cbd45e9b83aed3/package.json",
+          "sha256_utf8": "fe13394ae7eb029c81d713ca50b5ec400f4446aaf4b8e8c0c74b5bdba1c5ab65",
+          "characters": 999
+        },
+        "index.html": {
+          "url": "https://raw.githubusercontent.com/ellisonleao/clumsy-bird/fae3d487d5102af29fb3f78431cbd45e9b83aed3/index.html",
+          "sha256_utf8": "f829cfb1d7b49f503357293efeeb5f4b284194e1f4c9088cd70cff050b2d0eb9",
+          "characters": 2429
+        }
+      }
+    }
+  }
+}
