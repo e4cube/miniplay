@@ -3,6 +3,7 @@ import {meowCafe} from './meow-cafe';
 import {neonRain} from './neon-rain';
 import {match3Games} from './match3-games';
 import {phase2Games} from './phase2-games';
+export {reviewGames} from './review-games';
 export const categoryRegistry=[{slug:"arcade",name:"Arcade"},{slug:"action",name:"Action"},{slug:"2-player",name:"2 Player"},{slug:"puzzle",name:"Puzzle"},{slug:"match-3",name:"Match-3"},{slug:"casual",name:"Casual"},{slug:"strategy",name:"Strategy"},{slug:"brain",name:"Brain"},{slug:"card",name:"Card"}] as const;
 export const categories=categoryRegistry.map(item=>item.name);
 export type Category=(typeof categoryRegistry)[number]["name"];

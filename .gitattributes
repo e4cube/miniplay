@@ -1,0 +1,2 @@
+# Preserve the pinned third-party tree byte-for-byte, including legacy line endings.
+public/play/hexgl/** -text
