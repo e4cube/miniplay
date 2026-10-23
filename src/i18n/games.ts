@@ -1,6 +1,8 @@
+import {lifeAtlasZh} from '@/data/life-atlas';
 import{games,type Game}from'@/data/games';import type{Locale}from'./config';import{phase2Zh}from'./phase2-games.zh';import{zhLongContent}from'./games.zh-content';
 type LocalizedFields=Pick<Game,'title'|'shortDescription'|'description'|'controls'|'seoTitle'|'seoDescription'|'howTo'|'tips'|'faq'>;
 const zh:Record<string,LocalizedFields>={
+'life-atlas':lifeAtlasZh,
 'battle-tanks':{title:'坦克大战',shortDescription:'守卫基地，挑战十二张原创战场。',description:'驾驶坦克守卫基地、击退敌军，在十二张原创地图中闯关。支持单人、同屏双人合作、生存模式和地图编辑器。',controls:'单人：WASD 或方向键移动，空格或 Enter 开火。双人：P1 使用 WASD＋空格；P2 使用方向键＋Enter 或 /。P 暂停。',seoTitle:'坦克大战 - 免费在线坦克战斗游戏',seoDescription:'免费在线玩坦克大战，守卫基地、击退敌军，支持单人、双人合作、生存模式和地图编辑器。',howTo:['先选择单人或双人，再进入战役或生存模式。','保护金色基地，击退每一波敌军。','砖墙可以摧毁，钢墙和水域阻挡坦克。'],tips:['玩家坦克标有 P1 或 P2，敌军标有 CPU。','利用墙体掩护基地，与朋友分工防守。'],faq:[{q:'单人模式会出现 P2 吗？',a:'不会，单人模式只生成一辆玩家坦克。战场中的其他坦克为敌军。'},{q:'是否支持手机？',a:'支持触屏方向与开火按键。'}]},
 
 "neon-rain":{"title": "霓雨街区", "shortDescription": "穿越霓虹雨巷、地下管网与楼顶，在像素赛博街区中战斗。", "description": "Neon Rain 霓雨街区是一款赛博朋克横版射击游戏。探索三个街区，攀爬建筑外梯、收集武器道具并挑战各区 Boss。保留完整电脑版与方向按键手机横屏版。", "controls": "电脑：WASD / 方向键移动，空格跳跃，Shift 冲刺，C 趴下，鼠标瞄准射击或 J 配合方向键射击。手机：四方向按钮、射击、跳跃、冲刺与趴下。", "seoTitle": "霓雨街区 Neon Rain - 电脑与手机横屏射击游戏 | Gamevado", "seoDescription": "在 Gamevado 免费玩霓雨街区，探索夜市、地下管网和楼顶。电脑版与手机横屏版均可直接打开。", "howTo": ["选择电脑版或手机横屏版，打开完整游戏。", "进入街区，击败敌人并向下一片区域推进。", "通过游戏菜单暂停、保存进度或开启声音。"], "tips": ["手机横屏游玩更舒适。", "手机按住射击并配合方向按钮瞄准，松开射击后才能向上攀梯。", "旧 GitHub Pages 存档不会自动搬迁，可通过存档码导出与导入。"], "faq": [{"q": "电脑版和手机版都还在吗？", "a": "都保留了，各有独立入口，原 GitHub Pages 版本也仍然可用。"}, {"q": "如何保留进度？", "a": "在当前浏览器保存进度，换设备时可使用游戏内存档码导入。"}]},

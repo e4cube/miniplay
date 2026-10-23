@@ -1,5 +1,6 @@
 const base='/assets/covers/';
 export const gameCovers:Record<string,string>={
+'life-atlas':base+'life-atlas.svg',
 'starlight-keeper':'/play/starlight-keeper/memory-harbor.png',
 'battle-tanks':base+'battle-tanks-v2.webp','neon-rain':base+'neon-rain-v2.webp','meow-cafe':base+'meow-cafe-v2.webp',
 'gem-match':base+'gems.svg','fruit-match':base+'fruit.svg','pet-match':base+'pets.svg','dessert-match':base+'dessert.svg','ocean-match':base+'ocean.svg','space-match':base+'space.svg','anime-match':base+'anime.svg',
