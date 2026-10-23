@@ -39,9 +39,9 @@ test('life guide has accurate SEO, accessible content and real related games', a
   await expect(page.getByRole('link', { name: 'Chinese homepage' })).toHaveAttribute('href', '/zh');
   expect((await request.get('/zh')).status()).toBe(200);
   const cards = page.locator('#related-games .game-cover-link');
-  expect(await cards.count()).toBe(3);
+  expect(await cards.count()).toBe(2);
   expect(await cards.evaluateAll(links => links.map(link => link.getAttribute('href')))).toEqual([
-    '/games/starlight-keeper', '/games/battle-tanks', '/games/neon-rain',
+    '/games/life-atlas', '/games/epoch-trails',
   ]);
   for (const link of await cards.all()) {
     const href = (await link.getAttribute('href'))!;

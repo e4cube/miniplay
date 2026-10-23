@@ -34,7 +34,7 @@ const faqs = [
 ];
 
 export default function GuidePage() {
-  const related = games.slice(0, 3);
+  const related = ['life-atlas', 'epoch-trails'].flatMap(slug => games.filter(game => game.slug === slug));
   const schema = [
     {
       '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -104,8 +104,8 @@ export default function GuidePage() {
         <aside className={styles.source} aria-label="Sources and review"><h2>Source &amp; review notes</h2><p>Controls and feature descriptions were checked against the <a href="https://1in8b.life/en/" target="_blank" rel="noopener noreferrer">official English game page<span className={styles.srOnly}> (opens in a new tab)</span></a> on October 23, 2026. The game is in beta, so menus and behavior may change. Tips are GameVado&apos;s independent editorial advice.</p></aside>
       </div>
       <section id="related-games" className={styles.related} aria-labelledby="related-title">
-        <div className="section-heading"><div><span className="eyebrow">KEEP EXPLORING</span><h2 id="related-title">Popular Games on GameVado</h2></div><Link className="subtle-link" href="/games">Browse all games ↗</Link></div>
-        <p className="muted">Discover the three featured games from our homepage. Pick your next adventure and play for free on GameVado.</p>
+        <div className="section-heading"><div><span className="eyebrow">KEEP EXPLORING</span><h2 id="related-title">More Life Simulation Games on GameVado</h2></div><Link className="subtle-link" href="/games">Browse all games ↗</Link></div>
+        <p className="muted">Keep exploring with two original GameVado games: shape an everyday life in Life Atlas, or choose a time in Earth’s history in Epoch Trails. Both are free to play and support English and Chinese.</p>
         <div className={styles.gameGrid}>{related.map(game => <GameCard key={game.id} game={game} />)}</div>
         <Link className="subtle-link" href="/">← Back to GameVado home</Link>
       </section>
