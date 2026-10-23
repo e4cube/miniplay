@@ -1,7 +1,9 @@
 "use client";
 import dynamic from "next/dynamic";
 import{useI18n}from'@/i18n/LocaleContext';const Loading=()=>{const{t}=useI18n();return <p>{t.common.loading}</p>};
+const EpochLoading=()=>{const{t}=useI18n();return <div role="status" style={{minHeight:1500,padding:32,background:'#101e2b',borderRadius:18}}>{t.common.loading}</div>};
 const map={
+  "epoch-trails":dynamic(()=>import("./epoch-trails/Game"),{ssr:false,loading:EpochLoading}),
   "life-atlas":dynamic(()=>import("./life-atlas/Game"),{ssr:false,loading:Loading}),
   "starlight-keeper":dynamic(()=>import("./starlight-keeper/Game"),{ssr:false,loading:Loading}),
   "meow-cafe":dynamic(()=>import("./meow-cafe/Game"),{ssr:false,loading:Loading}),

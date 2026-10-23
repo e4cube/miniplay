@@ -1,5 +1,6 @@
 const base='/assets/covers/';
 export const gameCovers:Record<string,string>={
+'epoch-trails':base+'epoch-trails.svg',
 'life-atlas':base+'life-atlas.svg',
 'starlight-keeper':'/play/starlight-keeper/memory-harbor.png',
 'battle-tanks':base+'battle-tanks-v2.webp','neon-rain':base+'neon-rain-v2.webp','meow-cafe':base+'meow-cafe-v2.webp',

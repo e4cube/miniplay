@@ -1,7 +1,9 @@
+import {epochTrailsZh} from '@/data/epoch-trails';
 import {lifeAtlasZh} from '@/data/life-atlas';
 import{games,type Game}from'@/data/games';import type{Locale}from'./config';import{phase2Zh}from'./phase2-games.zh';import{zhLongContent}from'./games.zh-content';
 type LocalizedFields=Pick<Game,'title'|'shortDescription'|'description'|'controls'|'seoTitle'|'seoDescription'|'howTo'|'tips'|'faq'>;
 const zh:Record<string,LocalizedFields>={
+'epoch-trails':epochTrailsZh,
 'life-atlas':lifeAtlasZh,
 'battle-tanks':{title:'坦克大战',shortDescription:'守卫基地，挑战十二张原创战场。',description:'驾驶坦克守卫基地、击退敌军，在十二张原创地图中闯关。支持单人、同屏双人合作、生存模式和地图编辑器。',controls:'单人：WASD 或方向键移动，空格或 Enter 开火。双人：P1 使用 WASD＋空格；P2 使用方向键＋Enter 或 /。P 暂停。',seoTitle:'坦克大战 - 免费在线坦克战斗游戏',seoDescription:'免费在线玩坦克大战，守卫基地、击退敌军，支持单人、双人合作、生存模式和地图编辑器。',howTo:['先选择单人或双人，再进入战役或生存模式。','保护金色基地，击退每一波敌军。','砖墙可以摧毁，钢墙和水域阻挡坦克。'],tips:['玩家坦克标有 P1 或 P2，敌军标有 CPU。','利用墙体掩护基地，与朋友分工防守。'],faq:[{q:'单人模式会出现 P2 吗？',a:'不会，单人模式只生成一辆玩家坦克。战场中的其他坦克为敌军。'},{q:'是否支持手机？',a:'支持触屏方向与开火按键。'}]},
 
