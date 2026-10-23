@@ -1,3 +1,4 @@
+import {lifeGuide} from '@/data/life-guide';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import GameCard from '@/components/GameCard';
@@ -5,23 +6,20 @@ import { games } from '@/data/games';
 import { absoluteUrl, site } from '@/config/site';
 import styles from './page.module.css';
 
-const path = '/guides/1-in-8-billion';
-const title = '1 in 8 Billion Guide: How to Play & Tips | GameVado';
-const description = 'Learn how to play 1 in 8 Billion, explore life simulation features, discover beginner tips, and try more free games on GameVado.';
-const headline = "1 in 8 Billion: Complete Beginner's Guide";
-const reviewed = '2026-10-23';
-const officialUrl = 'https://1in8b.life/';
+const {path,title,description,headline,published,updated,reviewed,officialUrl}=lifeGuide;
+const shareImage={url:absoluteUrl(lifeGuide.imagePath),width:1200,height:630,alt:lifeGuide.imageAlt};
 
 export const metadata: Metadata = {
   title: { absolute: title },
   description,
   alternates: { canonical: path, languages: { en: path, 'x-default': path } },
-  openGraph: { type: 'article', title, description, url: path, siteName: site.name, locale: 'en_US', publishedTime: reviewed, modifiedTime: reviewed },
-  twitter: { card: 'summary', title, description },
+  openGraph: { type: 'article', title, description, url: path, siteName: site.name, locale: 'en_US', publishedTime: published, modifiedTime: updated, images: [shareImage] },
+  twitter: { card: 'summary_large_image', title, description, images: [shareImage] },
+  robots: {index:true,follow:true,'max-image-preview':'large','max-snippet':-1,'max-video-preview':-1},
 };
 
 const sections = [
-  ['what-is', 'What is it?'], ['how-to-play', 'How to play'],
+  ['quick-answer', 'Quick start'], ['what-is', 'What is it?'], ['starting-settings', 'Starting settings'], ['how-to-play', 'How to play'],
   ['beginner-tips', 'Beginner tips'], ['faq', 'FAQ'], ['related-games', 'More games'],
 ];
 const faqs = [
@@ -47,8 +45,11 @@ export default function GuidePage() {
       '@context': 'https://schema.org', '@type': 'Article',
       '@id': absoluteUrl(path) + '#article', headline, description,
       mainEntityOfPage: absoluteUrl(path), url: absoluteUrl(path), inLanguage: 'en',
-      datePublished: reviewed, dateModified: reviewed,
-      author: { '@type': 'Organization', name: site.name, url: absoluteUrl('/') },
+      datePublished: published, dateModified: updated,
+      image: {'@type':'ImageObject',url:shareImage.url,width:1200,height:630,caption:lifeGuide.imageAlt},
+      articleSection: 'Game Guides',isAccessibleForFree:true,
+      about:{'@type':'Thing',name:'1 in 8 Billion',url:officialUrl},
+      author: { '@type': 'Organization', name: site.name, url: absoluteUrl('/about') },
       publisher: { '@type': 'Organization', name: site.name, url: absoluteUrl('/') },
       citation: 'https://1in8b.life/en/',
     },
@@ -64,18 +65,20 @@ export default function GuidePage() {
           <h1>1 in 8 Billion:<br /><em>Complete Beginner&apos;s Guide</em></h1>
           <p>A different beginning. An unfamiliar world. Explore a life shaped by chance, circumstances and the choices you make along the way.</p>
           <a className="btn" href={officialUrl} target="_blank" rel="noopener noreferrer">Play on Official Website <span aria-hidden="true">↗</span><span className={styles.srOnly}> (opens in a new tab)</span></a>
-          <p className={styles.byline}>By GameVado · Reviewed <time dateTime={reviewed}>October 23, 2026</time></p>
+          <p className={styles.byline}>By GameVado · Reviewed <time dateTime={reviewed}>October 24, 2026</time></p>
         </div>
         <div className={styles.art} aria-hidden="true"><div className={styles.orbit} /><div className={styles.orbitInner} /><div className={styles.dotField} /><div className={styles.oneDot} /><span className={styles.artLabel}>ONE LIFE.<br />A WORLD OF POSSIBILITIES.</span></div>
       </header>
       <p className={styles.disclaimer}>This is an independent fan-made guide. GameVado is not affiliated with the creators of 1 in 8 Billion.</p>
       <nav aria-label="On this page" className={styles.toc}>{sections.map(([id, label]) => <a key={id} href={`#${id}`}>{label}<span aria-hidden="true"> ↘</span></a>)}</nav>
       <div className={styles.body}>
+        <section id="quick-answer" aria-labelledby="quick-title"><h2 id="quick-title">How do you start 1 in 8 Billion?</h2><p>Open the official website, review the starting settings, select <strong>Be born</strong>, then choose <strong>Begin this life</strong>. Your simulated birthplace is drawn randomly. This guide explains the controls and choices; the game itself runs on <a href={officialUrl} target="_blank" rel="noopener noreferrer">1in8b.life</a>.</p></section>
         <section id="what-is" aria-labelledby="what-title">
           <span className="eyebrow">01 / THE IDEA</span><h2 id="what-title">What Is 1 in 8 Billion?</h2>
           <p>1 in 8 Billion is a life simulation played in your browser. Its standard start assigns a birthplace rather than letting you design an ideal character. You follow that person through life, responding to events and decisions.</p>
           <p>The official site uses public statistics to inform the simulation. Treat this as a way to explore how circumstances and chance interact: an individual playthrough is neither a prediction of your future nor evidence about everyone from a country.</p>
         </section>
+        <section id="starting-settings" aria-labelledby="settings-title"><span className="eyebrow">BEFORE YOU BEGIN</span><h2 id="settings-title">Starting settings explained</h2><dl className={styles.settings}><div><dt>World period</dt><dd>The past, Today, The future and Any world change the setting of the simulation. For a first run, Today is the simplest starting point.</dd></div><div><dt>Country draw</dt><dd>Babies born now weights countries by annual births; The 8 billion alive now uses population. Neither is a manual simulated-country selector.</dd></div><div><dt>Life length</dt><dd>Choose about 30 minutes, 1 hour or 1.5 hours. Pauses, speed and the simulated lifespan affect the actual time.</dd></div><div><dt>Your real birthplace</dt><dd>This optional comparison setting does not choose your simulated birthplace. Leave it blank if you do not want the comparison.</dd></div></dl></section>
         <section id="how-to-play" aria-labelledby="play-title">
           <span className="eyebrow">02 / YOUR FIRST LIFE</span><h2 id="play-title">How to Play</h2>
           <ol className={styles.steps}>
