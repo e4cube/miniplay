@@ -1,8 +1,10 @@
+import {wanchaoZh} from '@/data/wanchao';
 import {epochTrailsZh} from '@/data/epoch-trails';
 import {lifeAtlasZh} from '@/data/life-atlas';
 import{games,type Game}from'@/data/games';import type{Locale}from'./config';import{phase2Zh}from'./phase2-games.zh';import{zhLongContent}from'./games.zh-content';
 type LocalizedFields=Pick<Game,'title'|'shortDescription'|'description'|'controls'|'seoTitle'|'seoDescription'|'howTo'|'tips'|'faq'>;
 const zh:Record<string,LocalizedFields>={
+'wanchao':wanchaoZh,
 'epoch-trails':epochTrailsZh,
 'life-atlas':lifeAtlasZh,
 'battle-tanks':{title:'坦克大战',shortDescription:'守卫基地，挑战十二张原创战场。',description:'驾驶坦克守卫基地、击退敌军，在十二张原创地图中闯关。支持单人、同屏双人合作、生存模式和地图编辑器。',controls:'单人：WASD 或方向键移动，空格或 Enter 开火。双人：P1 使用 WASD＋空格；P2 使用方向键＋Enter 或 /。P 暂停。',seoTitle:'坦克大战 - 免费在线坦克战斗游戏',seoDescription:'免费在线玩坦克大战，守卫基地、击退敌军，支持单人、双人合作、生存模式和地图编辑器。',howTo:['先选择单人或双人，再进入战役或生存模式。','保护金色基地，击退每一波敌军。','砖墙可以摧毁，钢墙和水域阻挡坦克。'],tips:['玩家坦克标有 P1 或 P2，敌军标有 CPU。','利用墙体掩护基地，与朋友分工防守。'],faq:[{q:'单人模式会出现 P2 吗？',a:'不会，单人模式只生成一辆玩家坦克。战场中的其他坦克为敌军。'},{q:'是否支持手机？',a:'支持触屏方向与开火按键。'}]},
@@ -28,6 +30,6 @@ breakout:{title:'打砖块',shortDescription:'用球拍反弹小球并清除砖�
 'anime-match':{title:'动漫消消乐',shortDescription:'组合原创英雄徽记，完成战术关卡。',description:'以六种原创幻想职业为主题的动漫风格消除游戏，不使用现有作品角色。',controls:'点击两个相邻英雄徽记',seoTitle:'动漫消消乐 - 原创在线消除游戏',seoDescription:'在线玩原创动漫风消消乐，组合英雄徽记并挑战 30 个策略关卡。',howTo:['连接三个相同英雄徽记进行消除。','按任务要求招募指定职业并积累分数。','清除徽记下方的奥术结界。'],tips:['利用不同汉字符号区分英雄职业。','让英雄突击穿过较长的结界区域。'],faq:[{q:'游戏使用知名动漫角色吗？',a:'没有，全部职业名称和符号均为原创概念。'},{q:'以后可以替换正式角色美术吗？',a:'可以，主题接口支持使用本地原创图片资源。'}]},
 };
 export const categoryNames={Arcade:'街机',Action:'动作','2 Player':'双人',Puzzle:'益智','Match-3':'三消',Casual:'休闲',Strategy:'策略',Brain:'脑力',Card:'纸牌'}as const;
-export function getGames(locale:Locale):Game[]{return locale==='en'?games:games.map(game=>({...game,...(zh[game.slug]??phase2Zh[game.slug]),longContent:zhLongContent[game.slug]??[]}))}
+export function getGames(locale:Locale):Game[]{return locale==='en'?games:games.map(game=>({...game,...(zh[game.slug]??phase2Zh[game.slug]),longContent:game.slug==='wanchao'?wanchaoZh.longContent:(zhLongContent[game.slug]??[])}))}
 export function getGameBySlug(slug:string,locale:Locale){return getGames(locale).find(game=>game.slug===slug)}
 export function gameCategoryName(game:Game,locale:Locale){return locale==='zh-CN'?categoryNames[game.category]:game.category}
