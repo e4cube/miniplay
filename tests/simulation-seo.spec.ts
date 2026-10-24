@@ -16,8 +16,10 @@ for(const slug of ['life-atlas','epoch-trails']){
    await expect(page.locator('meta[property="og:image:height"]')).toHaveAttribute('content','630');
    await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute('content','summary_large_image');
    expect(await page.title()).toContain('GameVado');
+   if(zh)expect(await page.title()).toContain('人生模拟器');
    const description=await page.locator('meta[name=description]').getAttribute('content');expect(description!.length).toBeGreaterThan(40);
    const section=page.locator('section[aria-labelledby="simulation-overview-title"]');await expect(section).toBeVisible();
+   await expect(section).toContainText('人生模拟器');
    const other=slug==='life-atlas'?'epoch-trails':'life-atlas';await expect(section.locator('a').first()).toHaveAttribute('href',(zh?'/zh':'')+'/games/'+other);
    await expect(section.locator('a').last()).toHaveAttribute('href','/guides/1-in-8-billion');
    const nodes=(await page.locator('script[type="application/ld+json"]').allTextContents()).flatMap(s=>JSON.parse(s));

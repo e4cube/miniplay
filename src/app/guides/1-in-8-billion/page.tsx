@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 const sections = [
-  ['quick-answer', 'Quick start'], ['what-is', 'What is it?'], ['starting-settings', 'Starting settings'], ['how-to-play', 'How to play'],
+  ['quick-answer', 'Quick start'], ['what-is', 'What is it?'], ['life-simulator', 'Life simulator'], ['starting-settings', 'Starting settings'], ['how-to-play', 'How to play'],
   ['beginner-tips', 'Beginner tips'], ['faq', 'FAQ'], ['related-games', 'More games'],
 ];
 const faqs = [
@@ -61,7 +61,7 @@ export default function GuidePage() {
     <article id="article">
       <header className={styles.hero}>
         <div className={styles.heroCopy}>
-          <span className="eyebrow">UNOFFICIAL FAN GUIDE</span>
+          <span className="eyebrow">UNOFFICIAL FAN GUIDE · LIFE SIMULATOR / 人生模拟器</span>
           <h1>1 in 8 Billion:<br /><em>Complete Beginner&apos;s Guide</em></h1>
           <p>A different beginning. An unfamiliar world. Explore a life shaped by chance, circumstances and the choices you make along the way.</p>
           <a className="btn" href={officialUrl} target="_blank" rel="noopener noreferrer">Play on Official Website <span aria-hidden="true">↗</span><span className={styles.srOnly}> (opens in a new tab)</span></a>
@@ -78,6 +78,7 @@ export default function GuidePage() {
           <p>1 in 8 Billion is a life simulation played in your browser. Its standard start assigns a birthplace rather than letting you design an ideal character. You follow that person through life, responding to events and decisions.</p>
           <p>The official site uses public statistics to inform the simulation. Treat this as a way to explore how circumstances and chance interact: an individual playthrough is neither a prediction of your future nor evidence about everyone from a country.</p>
         </section>
+        <section id="life-simulator" aria-labelledby="simulator-title"><h2 id="simulator-title">1in8billion life simulator（人生模拟器）</h2><p>This 1in8billion game guide covers <strong>1 in 8 Billion</strong>, abbreviated here as <abbr title="1 in 8 Billion">1in8</abbr>. In this browser life simulator, a randomly assigned beginning leads to events and choices rather than a character you design to win.</p><p>For an everyday life simulator made by GameVado, try <Link href="/games/life-atlas">Life Atlas</Link>. For imagined lives across Earth&apos;s history, try <Link href="/games/epoch-trails">Epoch Trails</Link>. These are separate original games with different rules; the official 1 in 8 Billion game remains on <a href={officialUrl} target="_blank" rel="noopener noreferrer">1in8b.life</a>.</p></section>
         <section id="starting-settings" aria-labelledby="settings-title"><span className="eyebrow">BEFORE YOU BEGIN</span><h2 id="settings-title">Starting settings explained</h2><dl className={styles.settings}><div><dt>World period</dt><dd>The past, Today, The future and Any world change the setting of the simulation. For a first run, Today is the simplest starting point.</dd></div><div><dt>Country draw</dt><dd>Babies born now weights countries by annual births; The 8 billion alive now uses population. Neither is a manual simulated-country selector.</dd></div><div><dt>Life length</dt><dd>Choose about 30 minutes, 1 hour or 1.5 hours. Pauses, speed and the simulated lifespan affect the actual time.</dd></div><div><dt>Your real birthplace</dt><dd>This optional comparison setting does not choose your simulated birthplace. Leave it blank if you do not want the comparison.</dd></div></dl></section>
         <section id="how-to-play" aria-labelledby="play-title">
           <span className="eyebrow">02 / YOUR FIRST LIFE</span><h2 id="play-title">How to Play</h2>
