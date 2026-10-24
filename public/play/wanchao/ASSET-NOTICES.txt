@@ -1,0 +1,19 @@
+Wanchao: Rift Command / 万朝：裂时战线
+
+This is the original Wanchao JavaScript/Canvas browser edition, copied from
+the owner's WanchaoRTS 1.2 working project for GameVado integration.
+It does not include the separate OpenRA project, EA game assets or an
+original Red Alert installation dependency.
+
+Existing Wanchao story illustrations and building atlases are retained
+without pixel changes. They remain original project artwork; inclusion
+does not grant a new blanket third-party artwork redistribution license.
+Unit/terrain graphics include the original procedural drawings.
+No font binaries or external music are bundled.
+
+English text is provided by the local en.js catalog. The bilingual adapter
+changes display text, attributes and Canvas labels, leaving simulation
+identifiers, original data and save structures in place.
+
+Online multiplayer is not implemented. Browser saves belong to the current
+origin and do not automatically transfer from the previous hosting domain.

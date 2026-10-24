@@ -1,0 +1,14 @@
+const fs=require('node:fs'),path=require('node:path');
+const base=path.resolve(__dirname,'..'),zh=require('./wanchao-strings.json'),en=require('./wanchao-en.json');
+if(Object.keys(en).length!==zh.length)throw Error('Incomplete bilingual catalog');
+const dictionary={};
+zh.forEach((s,i)=>{if(typeof en[i]!=='string')throw Error('Missing translation '+i);dictionary[s]=en[i];if(s.startsWith('>'))dictionary[s.slice(1)]=en[i].replace(/^>/,'');});
+Object.assign(dictionary,{'的剧情场景':' story scene','暂停':'Pause','继续':'Resume','关闭':'Close','空格暂停':'Space to pause','点击取消末项':'Cancel last order','时空战役 · 六章剧情':'Rift Campaign · Six Chapters','战役进度':'Campaign progress','已完成':'Completed','未解锁':'Locked','任务失败':'Mission failed','剧情回顾':'Story archive','选择战役章节':'Choose campaign chapter','万朝：裂时战线':'Wanchao: Rift Command','战役':'Campaign','第一章':'Chapter I','第二章':'Chapter II','第三章':'Chapter III','第四章':'Chapter IV','第五章':'Chapter V','第六章':'Chapter VI','已暂停':'Paused','已就绪':'Ready','蓄能':'Charging','警戒':'Hold ground','巡逻':'Patrol','攻击':'Attack','采集':'Gather','修复':'Repair','建造':'Build','训练':'Train','中立':'Neutral','返回战场':'Return to battle','未发现敌军':'No enemy sighted','暂无存档':'No save found'});
+Object.assign(dictionary,{'即时战略战场，鼠标框选部队，右键下达命令':'RTS battlefield: drag to select troops, right-click to issue orders','保存当前战局':'Save current battle','战场菜单':'Battle menu','战术小地图，点击移动镜头':'Tactical minimap: click to move the camera','A：攻击移动':'A: attack move','X：停止':'X: stop','H：回到基地':'H: return to base','六章战役，跨越历史的裂隙。通关将解锁下一段征途。':'Six campaign chapters across the rifts of history. Victory unlocks the next journey.'});
+fs.writeFileSync(path.join(base,'public/play/wanchao/js/en.js'),'// English catalog for the original Wanchao Canvas game.\nwindow.WanchaoTranslations='+JSON.stringify(dictionary,null,2)+';\n');
+console.log('Built bilingual catalog:',Object.keys(dictionary).length,'entries');
+const entry=path.join(base,'public/play/wanchao/index.html');let html=fs.readFileSync(entry,'utf8');
+if(!html.includes('href="bilingual.css"'))html=html.replace('</head>','<link rel="stylesheet" href="bilingual.css"></head>');
+if(!html.includes('src="js/i18n.js"'))html=html.replace('<script src="js/engine.js"></script>','<script src="js/en.js"></script><script src="js/i18n.js"></script><script src="js/engine.js"></script>');
+fs.writeFileSync(entry,html);
+const dataFile=path.join(base,'public/play/wanchao/js/data.js');fs.writeFileSync(dataFile,fs.readFileSync(dataFile,'utf8').replace('三章战役，跨越历史的裂隙。','六章战役，跨越历史的裂隙。'));
