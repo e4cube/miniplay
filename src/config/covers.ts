@@ -1,5 +1,6 @@
 const base='/assets/covers/';
 export const gameCovers:Record<string,string>={
+'wanchao':base+'wanchao-cover-v2.webp',
 'epoch-trails':base+'epoch-trails-v2.webp',
 'life-atlas':base+'life-atlas-v2.webp',
 'starlight-keeper':'/play/starlight-keeper/memory-harbor.png',
