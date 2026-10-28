@@ -21,7 +21,8 @@ for(const slug of ['life-atlas','epoch-trails']){
    const section=page.locator('section[aria-labelledby="simulation-overview-title"]');await expect(section).toBeVisible();
    await expect(section).toContainText('人生模拟器');
    const other=slug==='life-atlas'?'epoch-trails':'life-atlas';await expect(section.locator('a').first()).toHaveAttribute('href',(zh?'/zh':'')+'/games/'+other);
-   await expect(section.locator('a').last()).toHaveAttribute('href','/guides/1-in-8-billion');
+   expect(html).not.toMatch(/1in8|1 in 8 Billion|1in8b\.life/i);
+   await expect(section.locator('a')).toHaveCount(1);
    const nodes=(await page.locator('script[type="application/ld+json"]').allTextContents()).flatMap(s=>JSON.parse(s));
    expect(nodes.find(n=>n['@type']==='VideoGame')).toMatchObject({url,image:'https://gamevado.com/assets/covers/'+slug+'-v2.webp',isAccessibleForFree:true,offers:{price:0,priceCurrency:'USD'}});
    expect(nodes.some(n=>n['@type']==='FAQPage')).toBe(false);
