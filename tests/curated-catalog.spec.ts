@@ -1,8 +1,8 @@
 import {test,expect} from './fixtures';
 import {unpublishedGames} from '../src/data/games';
-const slugs=['wanchao','epoch-trails','life-atlas','neon-rain','meow-cafe','starlight-keeper','battle-tanks'];
+const slugs=['dead-days','wanchao','epoch-trails','life-atlas','neon-rain','meow-cafe','starlight-keeper','battle-tanks'];
 
-test('only seven published games appear in both catalogs and homepage recommendations',async({page})=>{
+test('only eight published games appear in both catalogs and homepage recommendations',async({page})=>{
  for(const prefix of ['', '/zh']){
   for(const path of ['/games','']){
    await page.goto(prefix+path||'/',{waitUntil:'domcontentloaded'});
@@ -25,7 +25,7 @@ test('unpublished games return 404 in English and Chinese and stay out of the si
  expect((await request.get('/games/battle-tanks/editor')).status()).toBe(200);
 });
 
-test('all seven game pages retain bilingual routes and original credit',async({request})=>{
+test('all eight game pages retain bilingual routes and original credit',async({request})=>{
  for(const prefix of ['', '/zh']){
   for(const slug of slugs){
    const response=await request.get(prefix+'/games/'+slug);expect(response.status()).toBe(200);
@@ -35,3 +35,4 @@ test('all seven game pages retain bilingual routes and original credit',async({r
   }
  }
 });
+

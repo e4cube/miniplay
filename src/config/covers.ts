@@ -1,5 +1,6 @@
 const base='/assets/covers/';
 export const gameCovers:Record<string,string>={
+'dead-days':base+'dead-days.webp',
 'wanchao':base+'wanchao-cover-v2.webp',
 'epoch-trails':base+'epoch-trails-v2.webp',
 'life-atlas':base+'life-atlas-v2.webp',
@@ -8,3 +9,4 @@ export const gameCovers:Record<string,string>={
 'gem-match':base+'gems.svg','fruit-match':base+'fruit.svg','pet-match':base+'pets.svg','dessert-match':base+'dessert.svg','ocean-match':base+'ocean.svg','space-match':base+'space.svg','anime-match':base+'anime.svg',
 '2048-merge':base+'numbers.svg','number-merge':base+'numbers.svg','sudoku':base+'sudoku.svg','snake':base+'snake.svg','galaxy-strike':base+'space.svg','tank-duel':'/assets/art/tanks/tank-arena-map.png','pixel-fighters':'/assets/art/fighters/fighting-stage-background.png','neon-runner':base+'runner.svg','fruit-slash':base+'fruit.svg','pong':base+'pong.svg','breakout':base+'breakout.svg','minesweeper':base+'mines.svg','emoji-memory':base+'memory.svg','solitaire':base+'cards.svg','tic-tac-toe':base+'tic.svg','connect-four':base+'connect.svg'};
 export const coverFor=(slug:string)=>gameCovers[slug]||base+'gems.svg';
+

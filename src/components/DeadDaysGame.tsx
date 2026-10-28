@@ -1,0 +1,5 @@
+'use client';
+import {useState} from 'react';
+import GameShell from './GameShell';
+import {deadDays} from '@/data/dead-days';
+export default function DeadDaysGame(){const[loaded,setLoaded]=useState(false),[run,setRun]=useState(0);return <GameShell game={deadDays} restart={()=>setRun(n=>n+1)}><div style={{padding:20,width:'100%'}}><p>Dead Days · Early Access · 电脑键鼠试玩 · Chinese game interface</p><p>Use the in-game Save button before refreshing. First load downloads the game and browser engine.</p>{loaded?<iframe key={run} src="/play/dead-days/index.html" title="Dead Days survival game" allow="fullscreen; autoplay" allowFullScreen style={{width:'100%',height:'min(75vh,800px)',minHeight:440,border:0}}/>:<button className="btn" onClick={()=>setLoaded(true)}>Load game / 加载游戏</button>}<p><a href="/play/dead-days/index.html" target="_blank" rel="noopener noreferrer">Open full game / 独立窗口开玩 ↗</a></p></div></GameShell>}
